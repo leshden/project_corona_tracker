@@ -43,20 +43,20 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     dailyData[0] ? (
       <Line
         data={{
-          labels: dailyData.map(({ date }) => new Date(date).toLocaleDateString()),
+          labels: dailyData.map(({ date }) => new Date(date).toLocaleDateString()).reverse(),
           datasets: [{
-            data: dailyData.map((data) => data.confirmed),
+            data: dailyData.map((data) => data.confirmed).reverse(),
             label: 'Infected',
             borderColor: '#3333ff',
             fill: true,
           }, {
-            data: dailyData.map((data) => data.deaths),
+            data: dailyData.map((data) => data.deaths).reverse(),
             label: 'Deaths',
             borderColor: 'red',
             backgroundColor: 'rgba(255, 0, 0, 0.5)',
             fill: true,
           },  {
-            data: dailyData.map((data) => data.recovered),
+            data: dailyData.map((data) => data.recovered).reverse(),
             label: 'Recovered',
             borderColor: 'green',
             backgroundColor: 'rgba(0, 255, 0, 0.5)',
@@ -67,6 +67,8 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
       />
     ) : null
   );
+
+  console.log(dailyData);
 
   return (
     <div className={styles.container}>
